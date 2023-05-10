@@ -24,7 +24,23 @@ class Title extends Phaser.Scene {
         this.add.text(centerX, 450, "use up arrow to jump", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 600, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
-        this.add.sprite(centerX, 200, 'penguins', 'penguin-idle1'); 
+        this.penguin = this.add.sprite(centerX, 200, 'penguins', 'penguin-idle1').setScale(2); 
+
+        // animate penguin
+        this.anims.create({
+            key: 'idle', 
+            frames: this.anims.generateFrameNames('penguins', {
+                prefix: 'penguin-idle', 
+                start: 1, 
+                end: 2, 
+                suffix: '',
+                zeroPad: 1, 
+            }),
+            frameRate: 3, 
+            repeat: -1
+        });
+
+        this.penguin.anims.play("idle"); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 

@@ -5,10 +5,10 @@ class Play extends Phaser.Scene {
 
     create() {
 
-        this.space = this.add.tileSprite(0, 0, 960, 640, 'space').setOrigin(0);
+        this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
 
         // set up player penguin (physics sprite) and set properties
-        penguin = this.physics.add.sprite(50, centerY, 'penguin').setOrigin(0.5);
+        penguin = this.physics.add.sprite(50, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale(2);
         penguin.setCollideWorldBounds(true);
         // penguin.setBounce(0.5);
         penguin.setImmovable();
@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        this.space.tilePositionX -= 1; 
+        this.ground.tilePositionX -= 1; 
         
         // make sure penguin is still alive
         if(!penguin.destroyed) {
