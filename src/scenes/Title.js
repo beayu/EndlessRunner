@@ -24,7 +24,7 @@ class Title extends Phaser.Scene {
         this.add.text(centerX, 450, "use up arrow to jump", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 600, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
-        this.add.image(centerX, 200, "penguin").setScale(); 
+        this.add.sprite(centerX, 200, 'penguins', 'penguin-idle1'); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 

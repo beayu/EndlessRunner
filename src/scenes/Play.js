@@ -49,11 +49,6 @@ class Play extends Phaser.Scene {
         // make sure penguin is still alive
         if(!penguin.destroyed) {
             // check for player input
-            // if(cursors.up.isDown) {
-            //     penguin.body.velocity.y -= penguinVelocity;
-            // } else if(cursors.down.isDown) {
-            //     penguin.body.velocity.y += penguinVelocity;
-            // }
             if (Phaser.Input.Keyboard.JustDown(keySpace)) {
                 penguin.body.velocity.y -= penguinVelocity;
             }

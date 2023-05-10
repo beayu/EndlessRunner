@@ -13,15 +13,15 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         this.setVelocityX(velocity);            // make it go!
         this.setImmovable();                    
         // this.tint = Math.random() * 0xFFFFFF;   // randomize tint
-        this.newBarrier = true;                 // custom property to control barrier spawning
+        this.newObstacle = true;                 // custom property to control barrier spawning
     }
 
     update() {
         // add new barrier when existing barrier hits center X
-        if(this.newBarrier && this.x < centerX) {
+        if(this.newObstacle && this.x < centerX) {
             // (recursively) call parent scene method from this context
-            this.parentScene.addBarrier(this.parent, this.velocity);
-            this.newBarrier = false;
+            this.parentScene.addObstacle(this.parent, this.velocity);
+            this.newObstacle = false;
         }
 
         // destroy paddle if it reaches the left edge of the screen
