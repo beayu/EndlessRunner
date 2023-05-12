@@ -6,7 +6,7 @@ class GameOver extends Phaser.Scene {
     create() {
 
         let gameoverConfig = {
-            fontFamily: 'Baskerville', 
+            fontFamily: 'Garamond', 
             fontSize: '28px', 
             // backgroundColor: '#facd9d', 
             color: '#e0ffff', 
@@ -18,7 +18,7 @@ class GameOver extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, centerY, 'penguins', gameoverConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY, 'gameover', gameoverConfig).setOrigin(0.5);
 
         // keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 

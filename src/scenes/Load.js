@@ -37,6 +37,39 @@ class Load extends Phaser.Scene {
             console.log('Local storage not supported');
         }
 
+        // animate penguin
+        this.anims.create({
+            key: 'idle', 
+            frames: this.anims.generateFrameNames('penguins', {
+                prefix: 'penguin-idle', 
+                start: 1, 
+                end: 2, 
+                suffix: '',
+                zeroPad: 1, 
+            }),
+            frameRate: 3, 
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'run', 
+            frames: this.anims.generateFrameNames('penguins', {
+                prefix: 'penguin-run', 
+                start: 1, 
+                end: 4, 
+                suffix: '',
+                zeroPad: 1, 
+            }),
+            frameRate: 8, 
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'jump',
+            defaultTextureKey: 'penguins',
+            frames: [
+                { frame: 'penguin-jump' }
+            ],
+        });
+
         // go to Title scene
         this.scene.start('titleScene');
     }

@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
         this.groundScroll = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
 
         // set up player penguin (physics sprite) and set properties
-        this.penguin = this.physics.add.sprite(50, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale(2);
+        this.penguin = this.physics.add.sprite(100, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale();
         this.penguin.destroyed = false; 
         this.penguin.setDebug(true, true); 
 
@@ -95,7 +95,7 @@ class Play extends Phaser.Scene {
             console.log(`level: ${level}, speed: ${this.obstacleSpeed}`);
             // this.sound.play('clang', { volume: 0.5 });         // play clang to signal speed up
             if(this.obstacleSpeed >= this.obstacleSpeedMax) {     // increase obstacle speed
-                this.obstacleSpeed -= 25;
+                this.obstacleSpeed -= 10;
                 // this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
             }
         }
@@ -105,7 +105,7 @@ class Play extends Phaser.Scene {
     penguinCollision() {
 
         this.penguin.destroyed = true;                    // turn off collision checking
-        // this.difficultyTimer.destroy();             // shut down timer
+        this.difficultyTimer.destroy();             // shut down timer
         // this.sound.play('death', { volume: 0.25 }); // play death sound
         // this.cameras.main.shake(2500, 0.0075);      // camera death shake
         

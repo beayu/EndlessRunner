@@ -7,7 +7,7 @@ class Title extends Phaser.Scene {
 
          // title text configuration 
          let titleConfig = {
-            fontFamily: 'Baskerville', 
+            fontFamily: 'Garamond', 
             fontSize: '28px', 
             // backgroundColor: '#facd9d', 
             color: '#e0ffff', 
@@ -19,47 +19,13 @@ class Title extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, centerY, 'penguins', titleConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY, 'PENGUINS', titleConfig).setOrigin(0.5);
         this.add.text(centerX, 400, 'press space to play', titleConfig).setOrigin(0.5); 
         this.add.text(centerX, 450, "use up arrow or space to jump", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 500, "use down arrow to duck", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 600, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
         this.penguin = this.add.sprite(centerX, 200, 'penguins', 'penguin-idle1').setScale(2); 
-
-        // animate penguin
-        this.anims.create({
-            key: 'idle', 
-            frames: this.anims.generateFrameNames('penguins', {
-                prefix: 'penguin-idle', 
-                start: 1, 
-                end: 2, 
-                suffix: '',
-                zeroPad: 1, 
-            }),
-            frameRate: 3, 
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'run', 
-            frames: this.anims.generateFrameNames('penguins', {
-                prefix: 'penguin-run', 
-                start: 1, 
-                end: 4, 
-                suffix: '',
-                zeroPad: 1, 
-            }),
-            frameRate: 8, 
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'jump',
-            defaultTextureKey: 'penguins',
-            frames: [
-                { frame: 'penguin-jump' }
-            ],
-        });
-
         this.penguin.anims.play("idle"); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
