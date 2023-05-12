@@ -6,7 +6,6 @@ creative tilt justification
 */
 
 let config = {
-    parent: 'myGame',
     type: Phaser.AUTO,
     height: 640,
     width: 960,

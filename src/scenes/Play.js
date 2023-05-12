@@ -5,55 +5,45 @@ class Play extends Phaser.Scene {
 
     create() {
 
-        this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
+        this.JUMP_VELOCITY = -700;
+        this.MAX_JUMPS = 2;
+        this.SCROLL_SPEED = 4;
+        this.physics.world.gravity.y = 2600;
+
+        // this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
+        this.ground = this.physics.add.sprite(0, 640, 'ground').setOrigin(0, 1); 
+        this.ground.body.immovable = true; 
+        this.ground.body.allowGravity = false; 
+
+        this.groundScroll = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
 
         // set up player penguin (physics sprite) and set properties
-        penguin = this.physics.add.sprite(50, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale(2);
-        penguin.setCollideWorldBounds(true);
-        // penguin.setBounce(0.5);
-        penguin.setImmovable();
-        penguin.setMaxVelocity(600, 600);
-        penguin.setDragY(200);
-        // penguin.setDepth(1);             // ensures that penguin z-depth remains above shadow penguins
-        penguin.destroyed = false;       // custom property to track penguin life
-        // penguin.setBlendMode('SCREEN');  // set a WebGL blend mode
-        penguin.scrollFactorX = 1; 
-        penguin.setPushable(false); 
-        penguin.setGravityX(5); 
-        penguin.setAcceleration(600); 
+        this.penguin = this.physics.add.sprite(50, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale(2);
+        this.penguin.setDebug(true, true); 
 
-        penguin.setDebug(true, true); 
-
-        // set up barrier group
-        this.obstacleGroup = this.add.group({
-            runChildUpdate: true    // make sure update runs on group children
-        });
-
-        // set up barrier group
-        this.groundGroup = this.add.group({
-            runChildUpdate: true    // make sure update runs on group children
-        });
+        this.physics.add.collider(this.penguin, this.ground); 
 
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
-        // keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
-        // keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT); 
-        // keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT); 
-        // keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
-        // keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); 
+        keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
+        keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
     }
 
     update() {
 
-        this.ground.tilePositionX -= 1; 
-        
-        // make sure penguin is still alive
-        if(!penguin.destroyed) {
-            // check for player input
-            if (Phaser.Input.Keyboard.JustDown(keySpace)) {
-                penguin.body.velocity.y -= penguinVelocity;
-            }
-            // check for collisions
-            this.physics.world.collide(penguin, this.obstacleGroup, this.penguinCollision, null, this);
+        // this.ground.tilePositionX -= 1; 
+        this.groundScroll.tilePositionX += this.SCROLL_SPEED;
+
+        // jump
+        if (!this.penguin.body.touching.down) {
+            this.penguin.anims.play('jump', true);
+        }
+        else {
+            this.penguin.anims.play('run', true); 
+        }
+
+
+        if (this.penguin.body.touching.down && (Phaser.Input.Keyboard.JustDown(keySpace) || (Phaser.Input.Keyboard.JustDown(keyUp)))) {
+            this.penguin.body.setVelocityY(this.JUMP_VELOCITY);
         }
         
     }
