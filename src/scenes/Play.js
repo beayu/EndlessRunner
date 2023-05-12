@@ -45,6 +45,9 @@ class Play extends Phaser.Scene {
             loop: true
         });
 
+        // score 
+        this.score = this.add.text(50, 50, level);
+
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
@@ -67,6 +70,8 @@ class Play extends Phaser.Scene {
 
         // make sure penguin is still alive
         if (!this.penguin.destroyed) {
+            this.score.text = level; 
+
             // penguin animations
             if (!this.penguin.body.touching.down) {
                 this.penguin.anims.play('jump', true);

@@ -18,7 +18,33 @@ class GameOver extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, centerY, 'gameover', gameoverConfig).setOrigin(0.5);
+        // check for high score in local storage
+        if(localStorage.getItem('hiscore') != null) {
+            let storedScore = parseInt(localStorage.getItem('hiscore'));
+            // console.log(`storedScore: ${storedScore}`);
+            // see if current score is higher than stored score
+            if(level > storedScore) {
+                // console.log(`New high score: ${level}`);
+                localStorage.setItem('hiscore', level.toString());
+                highScore = level;
+                newHighScore = true;
+            } else {
+                // console.log('No new high score :/');
+                highScore = parseInt(localStorage.getItem('hiscore'));
+                newHighScore = false;
+            }
+        } else {
+            // console.log('No high score stored. Creating new.');
+            highScore = level;
+            localStorage.setItem('hiscore', highScore.toString());
+            newHighScore = true;
+        }
+
+        this.add.text(centerX, 200, 'gameover', gameoverConfig).setOrigin(0.5);
+        this.add.text(centerX, 300, highScore, gameoverConfig).setOrigin(0.5); 
+        this.add.text(centerX, 350, storedScore, gameoverConfig).setOrigin(0.5); 
+        this.add.text(centerX, 400, 'press space to play again', gameoverConfig).setOrigin(0.5);
+        this.add.text(centerX, 450, 'press down arrow to view credits', gameoverConfig).setOrigin(0.5);
 
         // keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 

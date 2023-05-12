@@ -25,7 +25,7 @@ class Credits extends Phaser.Scene {
         this.add.text(centerX, 500, "music:", creditsConfig).setOrigin(0.5); 
         this.add.text(centerX, 550, 'sounds:', creditsConfig).setOrigin(0.5); 
 
-        this.add.text(centerX, 600, 'pess space to go back', creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 600, 'pess space to return to main menu', creditsConfig).setOrigin(0.5); 
 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
     }
