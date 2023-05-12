@@ -20,6 +20,7 @@ class Load extends Phaser.Scene {
         // load graphics assets
         this.load.image('ground', 'ground.png');
         this.load.atlas('penguins', 'spritesheet.png', 'sprites.json');
+        this.load.image('penguin', 'penguin-idle1.png'); 
 
         // load audio assets
 

@@ -5,20 +5,31 @@ class GameOver extends Phaser.Scene {
 
     create() {
 
+        let gameoverConfig = {
+            fontFamily: 'Baskerville', 
+            fontSize: '28px', 
+            // backgroundColor: '#facd9d', 
+            color: '#e0ffff', 
+            align: 'center', 
+            padding: {
+                top: 5, 
+                bottom: 5, 
+            },
+            fixedWidth: 0
+        }
+
+        this.add.text(centerX, centerY, 'penguins', gameoverConfig).setOrigin(0.5);
 
         // keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
-        // keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
-        keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT); 
-        keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT); 
-        // keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
-        // keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); 
+        keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
+        keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keyLeft)) {
+        if (Phaser.Input.Keyboard.JustDown(keySpace)) {
             this.scene.start('playscene'); 
         }
-        if (Phaser.Input.Keyboard.JustDown(keyRight)) {
+        if (Phaser.Input.Keyboard.JustDown(keyDown)) {
             this.scene.start('creditsScene');
         }
     }

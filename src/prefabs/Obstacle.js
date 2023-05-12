@@ -2,8 +2,10 @@
 class Obstacle extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, velocity) {
         // call Phaser Physics Sprite constructor
-        let randomObstacle = ['rocks', 'snowpile', 'branch'];
-        super(scene, game.config.width + obstacleWidth, Phaser.Math.Between(obstacleHeight/2, game.config.height - obstacleHeight/2), randomObstacle[Math.floor(Math.random() * randomObstacle.length)]); 
+        // let randomObstacle = ['rocks', 'snowpile', 'branch'];
+        let randomObstacle = ['penguin']; 
+        // super(scene, game.config.width + obstacleWidth, Phaser.Math.Between(obstacleHeight/2, game.config.height - obstacleHeight/2), randomObstacle[Math.floor(Math.random() * randomObstacle.length)]); 
+        super(scene, game.config.width + obstacleWidth, 474, 'penguin'); 
         
         this.parentScene = scene;               // maintain scene context
 
@@ -11,8 +13,8 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         this.parentScene.add.existing(this);    // add to existing scene, displayList, updateList
         this.parentScene.physics.add.existing(this);    // add to physics system
         this.setVelocityX(velocity);            // make it go!
-        this.setImmovable();                    
-        // this.tint = Math.random() * 0xFFFFFF;   // randomize tint
+        this.body.immovable = true;                    
+        this.body.allowGravity = false; 
         this.newObstacle = true;                 // custom property to control barrier spawning
     }
 

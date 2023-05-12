@@ -29,7 +29,7 @@ let config = {
 let game = new Phaser.Game(config); 
 
 // reserve keyboard vars
-let keyUp, keyDown, keyLeft, keyRight, keySpace, keyR;
+let keyUp, keyDown, keySpace;
 
 // define globals
 let centerX = game.config.width/2;
@@ -38,8 +38,8 @@ let w = game.config.width;
 let h = game.config.height;
 const textSpacer = 64;
 let penguin = null;
-// const paddleWidth = 16;
-// const paddleHeight = 128;
+const obstacleWidth = 32;
+const obstacleHeight = 32;
 const penguinVelocity = 150;
 let level;
 let highScore;
