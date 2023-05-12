@@ -19,13 +19,13 @@ class Credits extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, centerY, "CREDITS", creditsConfig).setOrigin(0.5); 
-        this.add.text(centerX, 400, 'programmed by: Beatrice Yu', creditsConfig).setOrigin(0.5); 
-        this.add.text(centerX, 450, "art by: Beatrice Yu", creditsConfig).setOrigin(0.5); 
-        this.add.text(centerX, 500, "music:", creditsConfig).setOrigin(0.5); 
-        this.add.text(centerX, 550, 'sounds:', creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 100, "CREDITS", creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 150, 'programmed by: Beatrice Yu', creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 200, "art by: Beatrice Yu", creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 250, "music:", creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 300, 'sounds:', creditsConfig).setOrigin(0.5); 
 
-        this.add.text(centerX, 600, 'pess space to return to main menu', creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 500, 'press space to return to main menu', creditsConfig).setOrigin(0.5); 
 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
     }

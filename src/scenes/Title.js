@@ -19,13 +19,13 @@ class Title extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, centerY, 'PENGUINS', titleConfig).setOrigin(0.5);
-        this.add.text(centerX, 400, 'press space to play', titleConfig).setOrigin(0.5); 
-        this.add.text(centerX, 450, "use up arrow or space to jump", titleConfig).setOrigin(0.5);
-        this.add.text(centerX, 500, "use down arrow to duck", titleConfig).setOrigin(0.5);
-        this.add.text(centerX, 600, "press down arrow for credits", titleConfig).setOrigin(0.5); 
+        this.add.text(centerX, 250, 'PENGUINS', titleConfig).setOrigin(0.5);
+        this.add.text(centerX, 300, 'press space to play', titleConfig).setOrigin(0.5); 
+        this.add.text(centerX, 350, "use up arrow or space to jump", titleConfig).setOrigin(0.5);
+        this.add.text(centerX, 400, "use down arrow to duck", titleConfig).setOrigin(0.5);
+        this.add.text(centerX, 500, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
-        this.penguin = this.add.sprite(centerX, 200, 'penguins', 'penguin-idle1').setScale(2); 
+        this.penguin = this.add.sprite(centerX, 150, 'penguins', 'penguin-idle1').setScale(2); 
         this.penguin.anims.play("idle"); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 

@@ -7,8 +7,9 @@ creative tilt justification
 
 let config = {
     type: Phaser.AUTO,
-    height: 640,
+    height: 540,
     width: 960,
+    // zoom: 2,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },

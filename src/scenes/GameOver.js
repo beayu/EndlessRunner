@@ -42,7 +42,7 @@ class GameOver extends Phaser.Scene {
 
         this.add.text(centerX, 200, 'gameover', gameoverConfig).setOrigin(0.5);
         this.add.text(centerX, 300, highScore, gameoverConfig).setOrigin(0.5); 
-        this.add.text(centerX, 350, storedScore, gameoverConfig).setOrigin(0.5); 
+        // this.add.text(centerX, 350, storedScore, gameoverConfig).setOrigin(0.5); 
         this.add.text(centerX, 400, 'press space to play again', gameoverConfig).setOrigin(0.5);
         this.add.text(centerX, 450, 'press down arrow to view credits', gameoverConfig).setOrigin(0.5);
 
