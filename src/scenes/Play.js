@@ -9,6 +9,8 @@ class Play extends Phaser.Scene {
         this.SCROLL_SPEED = 4;
         this.physics.world.gravity.y = 2600;
         this.obstacleSpeed = -450;
+        this.obstacleSpeedMax = -700; //-1000;
+        level = 0;
 
         // this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
         this.ground = this.physics.add.sprite(0, 640, 'ground').setOrigin(0, 1); 
@@ -51,10 +53,11 @@ class Play extends Phaser.Scene {
 
     // create new obstacles and add them to existing obstacle group
     addObstacle() {
-        console.log('obstacle');
+
         let speedVariance =  Phaser.Math.Between(0, 50);
         let obstacle = new Obstacle(this, this.obstacleSpeed - speedVariance);
         this.obstacleGroup.add(obstacle);
+
     }
 
     update() {
@@ -83,10 +86,24 @@ class Play extends Phaser.Scene {
     }
 
     levelBump() {
-        
+
+        // increment level (ie, score)
+        level++;
+
+        // bump speed every 5 levels (until max is hit)
+        if(level % 5 == 0) {
+            console.log(`level: ${level}, speed: ${this.obstacleSpeed}`);
+            // this.sound.play('clang', { volume: 0.5 });         // play clang to signal speed up
+            if(this.obstacleSpeed >= this.obstacleSpeedMax) {     // increase obstacle speed
+                this.obstacleSpeed -= 25;
+                // this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
+            }
+        }
+
     }
 
     penguinCollision() {
+
         this.penguin.destroyed = true;                    // turn off collision checking
         // this.difficultyTimer.destroy();             // shut down timer
         // this.sound.play('death', { volume: 0.25 }); // play death sound
@@ -105,5 +122,6 @@ class Play extends Phaser.Scene {
 
         // switch states after timer expires
         this.time.delayedCall(4000, () => { this.scene.start('gameOverScene'); });
+
     }
 }

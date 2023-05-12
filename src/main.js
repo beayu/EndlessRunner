@@ -44,4 +44,3 @@ const penguinVelocity = 150;
 let level;
 let highScore;
 let newHighScore = false;
-// let cursors;
