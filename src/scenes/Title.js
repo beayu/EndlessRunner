@@ -25,7 +25,8 @@ class Title extends Phaser.Scene {
         this.add.text(centerX, 400, "use down arrow to duck", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 500, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
-        this.penguin = this.add.sprite(centerX, 150, 'penguins', 'penguin-idle1').setScale(2); 
+        // this.penguin = this.add.sprite(centerX, 150, 'penguin').setOrigin(0.5); 
+        this.penguin = this.add.sprite(centerX, 150, 'penguins', 'penguin-idle1').setScale(); 
         this.penguin.anims.play("idle"); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 

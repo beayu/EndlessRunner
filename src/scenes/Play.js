@@ -76,7 +76,11 @@ class Play extends Phaser.Scene {
             if (!this.penguin.body.touching.down) {
                 this.penguin.anims.play('jump', true);
             }
-            else {
+            else if (Phaser.Input.Keyboard.JustDown(keyDown)) {
+                sliding = true; 
+                this.penguinSlide(); 
+            }
+            else if (!sliding) {
                 this.penguin.anims.play('run', true); 
             }
 
@@ -88,6 +92,13 @@ class Play extends Phaser.Scene {
             this.physics.world.collide(this.penguin, this.obstacleGroup, this.penguinCollision, null, this);
         }
         
+    }
+
+    penguinSlide() {
+        this.penguin.anims.play('slide'); 
+        this.penguin.on('animationcomplete', ()=> {
+            sliding = false; 
+        });
     }
 
     levelBump() {

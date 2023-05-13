@@ -69,6 +69,24 @@ class Load extends Phaser.Scene {
                 { frame: 'penguin-jump' }
             ],
         });
+        this.anims.create({
+            key: 'slide', 
+            frames: [
+                {key: 'penguins', frame: 'penguin-slide1'}, 
+                {key: 'penguins', frame: 'penguin-slide2'}, 
+                {key: 'penguins', frame: 'penguin-slide3', duration: 500}
+            ],
+            frameRate: 5,
+            yoyo: true
+        })
+        this.anims.create({
+            key: 'yay',
+            frames: [
+                {key: 'penguins', frame: 'penguin-idle1'},
+                {key: 'penguins', frame: 'penguin-jump'}],
+            frameRate: 3, 
+            repeat: -1
+        });
 
         // go to Title scene
         this.scene.start('titleScene');

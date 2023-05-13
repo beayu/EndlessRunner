@@ -39,6 +39,7 @@ let w = game.config.width;
 let h = game.config.height;
 const textSpacer = 64;
 let penguin = null;
+let sliding = false; 
 const obstacleWidth = 32;
 const obstacleHeight = 32;
 const penguinVelocity = 150;
