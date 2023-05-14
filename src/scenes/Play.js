@@ -53,6 +53,19 @@ class Play extends Phaser.Scene {
             loop: true
         });
 
+         // score text configuration 
+         let creditsConfig = {
+            fontFamily: 'Garamond', 
+            fontSize: '28px', 
+            color: '#ffffff', 
+            align: 'center', 
+            padding: {
+                top: 5, 
+                bottom: 5, 
+            },
+            fixedWidth: 0
+        }
+
         // score 
         this.score = this.add.text(50, 50, 'score: ' + level);
 
@@ -123,7 +136,7 @@ class Play extends Phaser.Scene {
             // console.log(`level: ${level}, speed: ${this.obstacleSpeed}`);
             if(this.obstacleSpeed >= this.obstacleSpeedMax) {     // increase obstacle speed
                 this.obstacleSpeed -= 10;
-                this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
+                // this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
             }
         }
 
@@ -134,8 +147,7 @@ class Play extends Phaser.Scene {
         this.penguin.destroyed = true;                    // turn off collision checking
         this.difficultyTimer.destroy();             // shut down timer
         this.sound.play('hit'); 
-        // this.sound.play('death', { volume: 0.25 }); // play death sound
-        this.cameras.main.shake(2500, 0.0075);      // camera death shake
+        // this.cameras.main.shake(2500, 0.0075);      // camera death shake
         
         // add tween to fade out audio
         this.tweens.add({

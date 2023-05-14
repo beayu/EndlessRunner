@@ -5,7 +5,7 @@ class Credits extends Phaser.Scene {
 
     create() {
 
-         // title text configuration 
+         // credits text configuration 
          let creditsConfig = {
             fontFamily: 'Garamond', 
             fontSize: '36px', 
