@@ -6,7 +6,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         let randomObstacle = ['penguin']; 
         // super(scene, game.config.width + obstacleWidth, Phaser.Math.Between(obstacleHeight/2, game.config.height - obstacleHeight/2), randomObstacle[Math.floor(Math.random() * randomObstacle.length)]); 
         // super(scene, game.config.width + obstacleWidth, 365, 'penguin'); 
-        super(scene, game.config.width + obstacleWidth, 335, 'snowball'); 
+        super(scene, game.config.width + obstacleWidth, 320, 'snowball'); 
         
         this.parentScene = scene;               // maintain scene context
 

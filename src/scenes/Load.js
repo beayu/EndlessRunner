@@ -77,9 +77,9 @@ class Load extends Phaser.Scene {
             frames: [
                 {frame: 'penguin-slide1'}, 
                 {frame: 'penguin-slide2'}, 
-                {frame: 'penguin-slide3', duration: 250}
+                {frame: 'penguin-slide3', duration: 200}
             ],
-            frameRate: 5,
+            frameRate: 6,
             yoyo: true
         })
         this.anims.create({

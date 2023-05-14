@@ -5,9 +5,9 @@ class Play extends Phaser.Scene {
 
     create() {
 
-        this.JUMP_VELOCITY = -900;
+        this.JUMP_VELOCITY = -800;
         this.SCROLL_SPEED = 4;
-        this.physics.world.gravity.y = 2600;
+        this.physics.world.gravity.y = 3000; //2600;
         this.obstacleSpeed = -450;
         this.obstacleSpeedMax = -700; //-1000;
         level = 0;
@@ -68,6 +68,7 @@ class Play extends Phaser.Scene {
     update() {
 
         // this.ground.tilePositionX -= 1; 
+        this.sky.tilePositionX += 2;
         this.groundScroll.tilePositionX += this.SCROLL_SPEED;
 
         // make sure penguin is still alive
@@ -77,6 +78,7 @@ class Play extends Phaser.Scene {
             // penguin animations
             if (!this.penguin.body.touching.down && !sliding) {
                 this.penguin.anims.play('jump', true);
+                // console.log(this.penguin.getBottomCenter()); 
             }
             else if (this.penguin.body.touching.down && Phaser.Input.Keyboard.JustDown(keyDown)) {
                 sliding = true; 
@@ -126,7 +128,7 @@ class Play extends Phaser.Scene {
         this.penguin.destroyed = true;                    // turn off collision checking
         this.difficultyTimer.destroy();             // shut down timer
         // this.sound.play('death', { volume: 0.25 }); // play death sound
-        // this.cameras.main.shake(2500, 0.0075);      // camera death shake
+        this.cameras.main.shake(2500, 0.0075);      // camera death shake
         
         // // add tween to fade out audio
         // this.tweens.add({
@@ -140,7 +142,7 @@ class Play extends Phaser.Scene {
         this.penguin.destroy();    
 
         // switch states after timer expires
-        this.time.delayedCall(4000, () => { this.scene.start('gameOverScene'); });
+        this.time.delayedCall(2000, () => { this.scene.start('gameOverScene'); });
 
     }
 }
