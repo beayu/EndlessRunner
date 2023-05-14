@@ -18,17 +18,18 @@ class Load extends Phaser.Scene {
 
         this.load.path = './assets/';
         // load graphics assets
-        this.load.image('sky', 'ocean.png')
+        this.load.image('sky', 'sky.png')
         this.load.image('ground', 'ground.png');
         this.load.atlas('penguins', 'spritesheet.png', 'sprites.json');
         this.load.image('penguin', 'penguin-idle1.png'); 
         this.load.image('snowball', 'snowball.png'); 
 
         // load audio assets
-
-
-        // load font
-        // this.load.bitmapFont('gem', 'font/gem.png', 'font/gem.xml');
+        this.load.audio('bgm', 'Tea K Pea - icenest.mp3'); 
+        this.load.audio('select', 'select.wav'); 
+        this.load.audio('jump', 'jump.wav'); 
+        this.load.audio('slide', 'slide.wav'); 
+        this.load.audio('hit', 'hit.wav');
     }
 
     create() {

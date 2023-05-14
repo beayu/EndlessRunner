@@ -25,7 +25,7 @@ class Credits extends Phaser.Scene {
         this.add.text(centerX, 150, 'programmed by: Beatrice Yu', creditsConfig).setOrigin(0.5); 
         this.add.text(centerX, 200, "art by: Beatrice Yu", creditsConfig).setOrigin(0.5); 
         this.add.text(centerX, 250, "music by: Tea K Pea", creditsConfig).setOrigin(0.5); 
-        this.add.text(centerX, 300, 'sounds:', creditsConfig).setOrigin(0.5); 
+        this.add.text(centerX, 300, 'sounds from: sfxr.me', creditsConfig).setOrigin(0.5); 
 
         this.penguin = this.add.sprite(centerX, 400, 'penguins', 'penguin-idle1').setOrigin(0.5); 
         this.penguin.anims.play('idle');
@@ -37,6 +37,7 @@ class Credits extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySpace)) {
+            this.sound.play('select'); 
             this.scene.start('titleScene');
         }
     }

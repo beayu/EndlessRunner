@@ -10,10 +10,17 @@ class Play extends Phaser.Scene {
         this.physics.world.gravity.y = 3000; //2600;
         this.obstacleSpeed = -450;
         this.obstacleSpeedMax = -700; //-1000;
-        score = 0; 
         level = 0;
 
-        this.sky = this.add.tileSprite(0, 0, 480, 216, 'sky').setOrigin(0).setScale(2); 
+        this.bgm = this.sound.add('bgm', { 
+            mute: false,
+            volume: 1,
+            rate: 1,
+            loop: true 
+        });
+        this.bgm.play();
+
+        this.sky = this.add.tileSprite(0, 0, 960, 540, 'sky').setOrigin(0); 
 
         this.ground = this.physics.add.sprite(0, 540, 'ground').setOrigin(0, 1); 
         this.ground.body.immovable = true; 
@@ -24,8 +31,8 @@ class Play extends Phaser.Scene {
         // set up player penguin (physics sprite) and set properties
         this.penguin = this.physics.add.sprite(100, 365, 'penguins', 'penguin-run1').setOrigin(0.5);
         this.penguin.destroyed = false; 
-        this.penguin.setDebug(true, true); 
-        this.penguin.setDebugBodyColor(0xe0ffff); 
+        // this.penguin.setDebug(true, true); 
+        // this.penguin.setDebugBodyColor(0xe0ffff); 
 
         this.physics.add.collider(this.penguin, this.ground); 
 
@@ -38,8 +45,6 @@ class Play extends Phaser.Scene {
             this.addObstacle(); 
         });
 
-        // this.physics.add.collider(this.ground, this.obstacleGroup); 
-
         // set up difficulty timer (triggers callback every second)
         this.difficultyTimer = this.time.addEvent({
             delay: 1000,
@@ -49,7 +54,7 @@ class Play extends Phaser.Scene {
         });
 
         // score 
-        this.score = this.add.text(50, 50, level);
+        this.score = this.add.text(50, 50, 'score: ' + level);
 
         keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
@@ -73,14 +78,15 @@ class Play extends Phaser.Scene {
 
         // make sure penguin is still alive
         if (!this.penguin.destroyed) {
-            this.score.text = level; 
+            this.score.text = 'score: ' + level; 
 
             // penguin animations
             if (!this.penguin.body.touching.down && !sliding) {
                 this.penguin.anims.play('jump', true);
-                console.log(this.penguin.getBottomCenter()); 
+                // console.log(this.penguin.getBottomCenter()); 
             }
             else if (this.penguin.body.touching.down && Phaser.Input.Keyboard.JustDown(keyDown)) {
+                this.sound.play('slide', {volume: 0.5}); 
                 sliding = true; 
                 this.penguin.body.allowGravity = false; 
                 this.penguin.setBodySize(50, 30); 
@@ -98,6 +104,7 @@ class Play extends Phaser.Scene {
 
             // jump
             if ((this.penguin.body.touching.down && !sliding) && (Phaser.Input.Keyboard.JustDown(keySpace) || (Phaser.Input.Keyboard.JustDown(keyUp)))) {
+                this.sound.play('jump'); 
                 this.penguin.body.setVelocityY(this.JUMP_VELOCITY);
             }
             // check for collisions
@@ -113,11 +120,10 @@ class Play extends Phaser.Scene {
 
         // bump speed every 5 levels (until max is hit)
         if(level % 5 == 0) {
-            console.log(`level: ${level}, speed: ${this.obstacleSpeed}`);
-            // this.sound.play('clang', { volume: 0.5 });         // play clang to signal speed up
+            // console.log(`level: ${level}, speed: ${this.obstacleSpeed}`);
             if(this.obstacleSpeed >= this.obstacleSpeedMax) {     // increase obstacle speed
                 this.obstacleSpeed -= 10;
-                // this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
+                this.bgm.rate += 0.01;                          // increase bgm playback rate (ドキドキ)
             }
         }
 
@@ -127,16 +133,17 @@ class Play extends Phaser.Scene {
 
         this.penguin.destroyed = true;                    // turn off collision checking
         this.difficultyTimer.destroy();             // shut down timer
+        this.sound.play('hit'); 
         // this.sound.play('death', { volume: 0.25 }); // play death sound
         this.cameras.main.shake(2500, 0.0075);      // camera death shake
         
-        // // add tween to fade out audio
-        // this.tweens.add({
-        //     targets: this.bgm,
-        //     volume: 0,
-        //     ease: 'Linear',
-        //     duration: 2000,
-        // });
+        // add tween to fade out audio
+        this.tweens.add({
+            targets: this.bgm,
+            volume: 0,
+            ease: 'Linear',
+            duration: 2000,
+        });
 
         // kill penguin
         this.penguin.destroy();    

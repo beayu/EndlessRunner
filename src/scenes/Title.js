@@ -39,9 +39,11 @@ class Title extends Phaser.Scene {
         // start next scene
 
         if (Phaser.Input.Keyboard.JustDown(keySpace)) {
+            this.sound.play('select'); 
             this.scene.start('playScene');
         }
         if (Phaser.Input.Keyboard.JustDown(keyDown)) {
+            this.sound.play('select'); 
             this.scene.start('creditsScene');
         }
 

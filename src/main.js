@@ -1,12 +1,13 @@
 /* 
 Beatrice Yu 
 the endless waddle
-approximate time to completion: 18
+approximate time to completion: 22
 creative tilt justification: 
-    technically - I'm proud that I was able to get my penguin to duck with an adjusted collision box so that you would have to duck to avoid flying
-        snowballs. 
-    visually - It was my first time doing pixel art with animations and I'm happy with how my penguin sprites look in my game. My other assets could 
-        use improvement and I'd like to make them nicer. 
+    technically - I'm proud that I was able to get my penguin to slide with an adjusted collision box so that you would have to slide to avoid 
+        flying snowballs and it took a bit of research to get the animation to play the way I wanted. Also, getting the collision box to change 
+        without making the penguin fall off the platform was a bit tricky and I'm sure there is a better way to do it than how I did it. 
+    visually - I'm proud of the visual assets I drew. It was my first time doing pixel art with animations and I'm happy with how my penguin sprites 
+     look in my game. My other assets could use improvement and I'd like to make them nicer if I have the time. 
 */
 
 let config = {
