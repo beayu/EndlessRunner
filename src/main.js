@@ -1,8 +1,10 @@
 /* 
 Beatrice Yu 
-game title 
-approximate time to completion: 3
-creative tilt justification
+the endless waddle
+approximate time to completion: 12
+creative tilt justification: 
+    technically - 
+    visually - I'm proud of my visual assets. It was my first time doing pixel art with animations and I'm happy with how my penguin sprites look in my game. 
 */
 
 let config = {

@@ -12,17 +12,20 @@ class Play extends Phaser.Scene {
         this.obstacleSpeedMax = -700; //-1000;
         level = 0;
 
+        this.sky = this.add.tileSprite(0, 0, 480, 216, 'sky').setOrigin(0).setScale(2); 
+
         // this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
-        this.ground = this.physics.add.sprite(0, 640, 'ground').setOrigin(0, 1); 
+        this.ground = this.physics.add.sprite(0, 540, 'ground').setOrigin(0, 1); 
         this.ground.body.immovable = true; 
         this.ground.body.allowGravity = false; 
 
-        this.groundScroll = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
+        this.groundScroll = this.add.tileSprite(0, 540, 960, 150, 'ground').setOrigin(0, 1);
 
         // set up player penguin (physics sprite) and set properties
-        this.penguin = this.physics.add.sprite(100, centerY, 'penguins', 'penguin-run1').setOrigin(0.5).setScale();
+        this.penguin = this.physics.add.sprite(100, 365, 'penguins', 'penguin-run1').setOrigin(0.5);
         this.penguin.destroyed = false; 
         this.penguin.setDebug(true, true); 
+        this.penguin.setDebugBodyColor(0xe0ffff); 
 
         this.physics.add.collider(this.penguin, this.ground); 
 
@@ -57,8 +60,7 @@ class Play extends Phaser.Scene {
     // create new obstacles and add them to existing obstacle group
     addObstacle() {
 
-        let speedVariance =  Phaser.Math.Between(0, 50);
-        let obstacle = new Obstacle(this, this.obstacleSpeed - speedVariance);
+        let obstacle = new Obstacle(this, this.obstacleSpeed);
         this.obstacleGroup.add(obstacle);
 
     }
@@ -73,32 +75,33 @@ class Play extends Phaser.Scene {
             this.score.text = level; 
 
             // penguin animations
-            if (!this.penguin.body.touching.down) {
+            if (!this.penguin.body.touching.down && !sliding) {
                 this.penguin.anims.play('jump', true);
             }
-            else if (Phaser.Input.Keyboard.JustDown(keyDown)) {
+            else if (this.penguin.body.touching.down && Phaser.Input.Keyboard.JustDown(keyDown)) {
                 sliding = true; 
-                this.penguinSlide(); 
+                this.penguin.body.allowGravity = false; 
+                this.penguin.setBodySize(50, 30); 
+                this.penguin.body.setOffset(0, 19);
+                this.penguin.anims.play('slide'); 
+                this.penguin.on('animationcomplete', () => {
+                    sliding = false; 
+                    this.penguin.setBodySize(50, 50); 
+                    this.penguin.body.allowGravity = true; 
+                })
             }
             else if (!sliding) {
                 this.penguin.anims.play('run', true); 
             }
 
             // jump
-            if (this.penguin.body.touching.down && (Phaser.Input.Keyboard.JustDown(keySpace) || (Phaser.Input.Keyboard.JustDown(keyUp)))) {
+            if ((this.penguin.body.touching.down && !sliding) && (Phaser.Input.Keyboard.JustDown(keySpace) || (Phaser.Input.Keyboard.JustDown(keyUp)))) {
                 this.penguin.body.setVelocityY(this.JUMP_VELOCITY);
             }
             // check for collisions
             this.physics.world.collide(this.penguin, this.obstacleGroup, this.penguinCollision, null, this);
         }
         
-    }
-
-    penguinSlide() {
-        this.penguin.anims.play('slide'); 
-        this.penguin.on('animationcomplete', ()=> {
-            sliding = false; 
-        });
     }
 
     levelBump() {

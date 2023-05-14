@@ -18,9 +18,11 @@ class Load extends Phaser.Scene {
 
         this.load.path = './assets/';
         // load graphics assets
+        this.load.image('sky', 'ocean.png')
         this.load.image('ground', 'ground.png');
         this.load.atlas('penguins', 'spritesheet.png', 'sprites.json');
         this.load.image('penguin', 'penguin-idle1.png'); 
+        this.load.image('snowball', 'snowball.png'); 
 
         // load audio assets
 
@@ -71,19 +73,21 @@ class Load extends Phaser.Scene {
         });
         this.anims.create({
             key: 'slide', 
+            defaultTextureKey: 'penguins', 
             frames: [
-                {key: 'penguins', frame: 'penguin-slide1'}, 
-                {key: 'penguins', frame: 'penguin-slide2'}, 
-                {key: 'penguins', frame: 'penguin-slide3', duration: 500}
+                {frame: 'penguin-slide1'}, 
+                {frame: 'penguin-slide2'}, 
+                {frame: 'penguin-slide3', duration: 250}
             ],
             frameRate: 5,
             yoyo: true
         })
         this.anims.create({
             key: 'yay',
+            defaultTextureKey: 'penguins', 
             frames: [
-                {key: 'penguins', frame: 'penguin-idle1'},
-                {key: 'penguins', frame: 'penguin-jump'}],
+                {frame: 'penguin-idle1'},
+                {frame: 'penguin-jump'}],
             frameRate: 3, 
             repeat: -1
         });

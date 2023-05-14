@@ -5,7 +5,8 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         // let randomObstacle = ['rocks', 'snowpile', 'branch'];
         let randomObstacle = ['penguin']; 
         // super(scene, game.config.width + obstacleWidth, Phaser.Math.Between(obstacleHeight/2, game.config.height - obstacleHeight/2), randomObstacle[Math.floor(Math.random() * randomObstacle.length)]); 
-        super(scene, game.config.width + obstacleWidth, 474, 'penguin'); 
+        // super(scene, game.config.width + obstacleWidth, 365, 'penguin'); 
+        super(scene, game.config.width + obstacleWidth, 335, 'snowball'); 
         
         this.parentScene = scene;               // maintain scene context
 
@@ -20,7 +21,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         // add new barrier when existing barrier hits center X
-        if(this.newObstacle && this.x < centerX) {
+        if(this.newObstacle && this.x < (centerX / 2)) {
             // (recursively) call parent scene method from this context
             this.parentScene.addObstacle(this.parent, this.velocity);
             this.newObstacle = false;

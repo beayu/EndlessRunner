@@ -8,7 +8,7 @@ class Title extends Phaser.Scene {
          // title text configuration 
          let titleConfig = {
             fontFamily: 'Garamond', 
-            fontSize: '28px', 
+            fontSize: '36px', 
             // backgroundColor: '#facd9d', 
             color: '#e0ffff', 
             align: 'center', 
@@ -19,15 +19,17 @@ class Title extends Phaser.Scene {
             fixedWidth: 0
         }
 
-        this.add.text(centerX, 250, 'PENGUINS', titleConfig).setOrigin(0.5);
-        this.add.text(centerX, 300, 'press space to play', titleConfig).setOrigin(0.5); 
-        this.add.text(centerX, 350, "use up arrow or space to jump", titleConfig).setOrigin(0.5);
-        this.add.text(centerX, 400, "use down arrow to duck", titleConfig).setOrigin(0.5);
+        this.add.text(centerX, 180, 'THE ENDLESS WADDLE', titleConfig).setOrigin(0.5);
+
+        titleConfig.fontSize = 28; 
+        this.add.text(centerX, 250, 'press space to play', titleConfig).setOrigin(0.5); 
+        this.add.text(centerX, 300, "use up arrow or space to jump", titleConfig).setOrigin(0.5);
+        this.add.text(centerX, 350, "use down arrow to slide", titleConfig).setOrigin(0.5);
         this.add.text(centerX, 500, "press down arrow for credits", titleConfig).setOrigin(0.5); 
         
         // this.penguin = this.add.sprite(centerX, 150, 'penguin').setOrigin(0.5); 
-        this.penguin = this.add.sprite(centerX, 150, 'penguins', 'penguin-idle1').setScale(); 
-        this.penguin.anims.play("idle"); 
+        this.penguin = this.add.sprite(centerX, 100, 'penguins', 'penguin-idle1').setScale(); 
+        this.penguin.anims.play("run"); 
 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
