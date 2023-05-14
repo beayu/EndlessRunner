@@ -53,8 +53,12 @@ class GameOver extends Phaser.Scene {
         this.add.text(centerX, 450, 'press space to play again', gameoverConfig).setOrigin(0.5);
         this.add.text(centerX, 500, 'press down arrow to view credits', gameoverConfig).setOrigin(0.5);
 
-        this.penguin = this.add.sprite(centerX, 330, 'penguins', 'penguin-idle1').setOrigin(0.5); 
-        this.penguin.anims.play('idle'); 
+        this.snowball1 = this.physics.add.sprite(380, 330, 'snowball').setOrigin(0.5); 
+        this.snowball1.body.setAngularVelocity(100); 
+        this.snowball1 = this.physics.add.sprite(centerX, 330, 'snowball').setOrigin(0.5); 
+        this.snowball1.body.setAngularVelocity(100); 
+        this.snowball1 = this.physics.add.sprite(580, 330, 'snowball').setOrigin(0.5); 
+        this.snowball1.body.setAngularVelocity(100); 
 
         // keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
         keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN); 

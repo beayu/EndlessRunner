@@ -10,11 +10,11 @@ class Play extends Phaser.Scene {
         this.physics.world.gravity.y = 3000; //2600;
         this.obstacleSpeed = -450;
         this.obstacleSpeedMax = -700; //-1000;
+        score = 0; 
         level = 0;
 
         this.sky = this.add.tileSprite(0, 0, 480, 216, 'sky').setOrigin(0).setScale(2); 
 
-        // this.ground = this.add.tileSprite(0, 640, 960, 150, 'ground').setOrigin(0, 1);
         this.ground = this.physics.add.sprite(0, 540, 'ground').setOrigin(0, 1); 
         this.ground.body.immovable = true; 
         this.ground.body.allowGravity = false; 
@@ -78,7 +78,7 @@ class Play extends Phaser.Scene {
             // penguin animations
             if (!this.penguin.body.touching.down && !sliding) {
                 this.penguin.anims.play('jump', true);
-                // console.log(this.penguin.getBottomCenter()); 
+                console.log(this.penguin.getBottomCenter()); 
             }
             else if (this.penguin.body.touching.down && Phaser.Input.Keyboard.JustDown(keyDown)) {
                 sliding = true; 

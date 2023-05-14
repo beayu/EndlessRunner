@@ -2,11 +2,13 @@
 class Obstacle extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, velocity) {
         // call Phaser Physics Sprite constructor
-        // let randomObstacle = ['rocks', 'snowpile', 'branch'];
-        let randomObstacle = ['penguin']; 
-        // super(scene, game.config.width + obstacleWidth, Phaser.Math.Between(obstacleHeight/2, game.config.height - obstacleHeight/2), randomObstacle[Math.floor(Math.random() * randomObstacle.length)]); 
-        // super(scene, game.config.width + obstacleWidth, 365, 'penguin'); 
-        super(scene, game.config.width + obstacleWidth, 320, 'snowball'); 
+        let r = (Math.floor(Math.random() * 5));
+        if (r == 0) {
+            super(scene, game.config.width + obstacleWidth, 320, 'snowball'); 
+        }
+        else {
+            super(scene, game.config.width + obstacleWidth, 369, 'snowball'); 
+        }
         
         this.parentScene = scene;               // maintain scene context
 
@@ -16,22 +18,21 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         this.setVelocityX(velocity);            // make it go!
         this.body.immovable = true;                    
         this.body.allowGravity = false; 
-        this.newObstacle = true;                 // custom property to control barrier spawning
+        this.newObstacle = true;                 // custom property to control snowball spawning
+        this.body.setAngularVelocity(-100); 
     }
 
     update() {
-        // add new barrier when existing barrier hits center X
+        // add new snowball when existing snowball hits center X
         if(this.newObstacle && this.x < (centerX / 2)) {
             // (recursively) call parent scene method from this context
             this.parentScene.addObstacle(this.parent, this.velocity);
             this.newObstacle = false;
         }
 
-        // destroy paddle if it reaches the left edge of the screen
+        // destroy snowball if it reaches the left edge of the screen
         if(this.x < -this.width) {
             this.destroy();
         }
     }
 }
-
-// from nathan
